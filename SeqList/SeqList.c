@@ -103,3 +103,18 @@ int length(SeqList list)
 {
 	return list.size;
 }
+
+
+void delete_pos(SeqList *list,int pos)
+{
+	if(pos<0||pos>=list->size)
+		{
+			printf("Error!\n");
+			return ;
+		}
+	for(int i=pos;i<list->size;++i)
+		{
+			list->base[i]=list->base[i+1];
+		}
+	--list->size;
+}

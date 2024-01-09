@@ -65,6 +65,9 @@ int main()
 				printf("The length is %d\n",length(mylist));
 				break;
 			case 9:
+				printf("Please set the number that you want to delete.\n");
+				scanf("%d",&pos);
+				delete_pos(&mylist,pos);
 				break;
 			case 10:
 				break;

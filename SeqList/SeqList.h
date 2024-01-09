@@ -35,6 +35,6 @@ int find(SeqList list,ElemType x);
 
 int length(SeqList list);
 
-
+void delete_pos(SeqList *list,int pos);
 
 #endif //_SEQLIST_H
