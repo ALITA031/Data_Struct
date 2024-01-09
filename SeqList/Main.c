@@ -4,7 +4,7 @@ int main()
 {
 	SeqList mylist;
 	InitSeqList(& mylist);
-
+	ElemType Item,pos;
 	int select=1;
 	while(select)
 	{
@@ -12,7 +12,7 @@ int main()
 		printf("* [1]  push_back   [2]  push_front *\n");
 		printf("* [3]  show_list   [4]  pop_back   *\n");
 		printf("* [5]  pop_front   [6]  insert_pos *\n");
-		printf("* [7]  fine        [8]  length     *\n");
+		printf("* [7]  find        [8]  length     *\n");
 		printf("* [9]  delete_pos  [10] delete_val *\n");
 		printf("* [11] sort        [12] reverse    *\n");
 		printf("* [13] clear       [14] destory    *\n");
@@ -25,20 +25,44 @@ int main()
 		switch(select)
 		{
 			case 1:
+				printf("Please set the number(-1 end):>\n");
+				while(scanf("%d",&Item),Item!=-1)
+				{		
+				push_back(&mylist,Item);
+				}
 				break;
 			case 2:
+				printf("Please set the number(-1 end):>\n");
+				while(scanf("%d",&Item),Item!=-1)
+				{		
+				push_front(&mylist,Item);
+				}
 				break;
 			case 3:
+				show_list(mylist);
 				break;
 			case 4:
+				pop_back(&mylist);
 				break;
 			case 5:
+				pop_front(&mylist);
 				break;
 			case 6:
+				printf("Please set num and pos\n");
+				scanf("%d %d",&Item,&pos);
+				insert_pos(&mylist,Item,pos);
 				break;
 			case 7:
+				printf("Please set the num that you want to find\n");
+				scanf("%d",&Item);
+				pos=find(mylist,Item);
+				if(pos==-1)
+					printf("Error!\n");
+				else
+					printf("The pos is %d\n",pos);
 				break;
 			case 8:
+				printf("The length is %d\n",length(mylist));
 				break;
 			case 9:
 				break;
@@ -53,7 +77,7 @@ int main()
 			case 14:
 				break;
 			default:
-			printf("False,Please set number again");
+			printf("False,Please set number again\n");
 				break;	
 		}
 	}

@@ -19,5 +19,22 @@ typedef struct SeqList
 
 void InitSeqList(SeqList *list);
 
+void push_back(SeqList *list,ElemType x);
+
+void show_list(SeqList list);
+
+void push_front(SeqList *list,ElemType x);
+
+void pop_back(SeqList *list);
+
+void pop_front(SeqList *list);
+
+void insert_pos(SeqList *list,ElemType x,int pos);
+
+int find(SeqList list,ElemType x);
+
+int length(SeqList list);
+
+
 
 #endif //_SEQLIST_H
