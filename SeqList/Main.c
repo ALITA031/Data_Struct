@@ -70,14 +70,21 @@ int main()
 				delete_pos(&mylist,pos);
 				break;
 			case 10:
+				printf("Please set the val that you want to delete\n");
+				scanf("%d",&Item);
+				delete_val(&mylist,Item);
 				break;
 			case 11:
+				sort(&mylist);
 				break;
 			case 12:
+				reverse(&mylist);
 				break;
 			case 13:
+				clear(&mylist);
 				break;
 			case 14:
+				destory(&mylist);
 				break;
 			default:
 			printf("False,Please set number again\n");

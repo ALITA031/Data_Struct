@@ -10,9 +10,9 @@ void InitSeqList(SeqList *list)
 
 void push_back(SeqList *list,ElemType x)
 {
-	if(list->size>=list->capacity)
+	if(list->size>=list->capacity&&!inc(list))
 	{
-		printf("The Space Is Full!\n");
+		printf("The Space Is Full!,%d cant push_back\n",x);
 		return ;	
 	}
 	list->base[list->size]=x;
@@ -30,7 +30,7 @@ void show_list(SeqList list)
 
 void push_front(SeqList *list,ElemType x)
 {
-	if(list->size>=SEQLIST_INIT_SIZE)
+	if(list->size>=SEQLIST_INIT_SIZE&&!inc(list))
 	{
 		printf("The Space Is Full\n");
 		return ;	
@@ -78,6 +78,11 @@ void insert_pos(SeqList *list,ElemType x,int pos)
 		printf("Error!\n");
 		return ;	
 	}
+	if(list->size>=list->capacity&&!inc(list))
+	{
+		printf("The Space Is Full,Cant Insert!\n");
+		return;
+	}
 	for(int i=list->size;i>pos;--i)
 	{
 		list->base[i]=list->base[i-1];
@@ -118,3 +123,107 @@ void delete_pos(SeqList *list,int pos)
 		}
 	--list->size;
 }
+
+
+void delete_val(SeqList *list,ElemType x)
+{
+	int pos=find(*list,x);
+	if(pos==-1)
+	{
+		printf("Error!\n");
+		return ;	
+	}	
+	delete_pos(list,pos);
+}
+
+void sort(SeqList *list)
+{
+	if(list->size==0)
+	{
+		printf("Error!\n");
+	return ;	
+	}
+	for(int i=list->size;i>0;--i)
+	{
+		for(int j=0;j<i-1;++j)
+		{
+			if(list->base[j]>list->base[j+1])
+			{
+				ElemType tmp=list->base[j];
+				list->base[j]=list->base[j+1];
+				list->base[j+1]=tmp;
+			}
+		}
+	}
+}
+
+void reverse(SeqList *list)
+{
+	if(list->size==0)
+	{
+		printf("Error!\n");
+		return ;
+	}
+	for(int i=0;i<list->size/2;i++)	
+	{
+		ElemType tmp=list->base[i];
+		list->base[i]=list->base[list->size-1-i];
+		list->base[list->size-1-i]=tmp;
+	}
+}
+
+void clear(SeqList *list)
+{
+	list->size=0;
+}
+
+void destory(SeqList *list)
+{
+	clear(list);
+	free(list);
+}
+
+
+bool inc(SeqList *list)
+{
+	ElemType *newbase=(ElemType *)realloc(list->base,sizeof(list->capacity+INC_SIZE));
+	if(newbase==NULL)
+	{
+		printf("The Space is Full,Cant Inc\n");
+		return false;
+	}
+	list->base=newbase;
+	list->capacity=SEQLIST_INIT_SIZE+INC_SIZE;
+	return true;
+}
+
+void merge(SeqList *list,SeqList *list1,SeqList *list2)
+{
+	list->capacity=list1->capacity+list2->capacity;
+	list->base=(ElemType *)malloc(sizeof(ElemType)*list->capacity);
+	assert(list->base!=NULL);
+	int indx=0;
+	int indx1=0;
+	int indx2=0;
+
+	while(indx1<list1->size&&indx2<list2->size)
+	{
+		if(list1->base[indx1]<list2->base[indx2])
+			list->base[indx++]=list1->base[indx1++];
+		else
+			list->base[indx++]=list2->base[indx2++];
+	}
+
+
+	while(indx1<list1->size)
+	{
+		list->base[indx++]=list1->base[indx1++];
+	}
+
+	while(indx2<list2->size)
+	{
+		list->base[indx++]=list2->base[indx2++];
+	}
+	list->size=list1->size+list2->size;
+}
+
