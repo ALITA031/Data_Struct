@@ -39,6 +39,16 @@ PNode find(List *list,ElemType x);
 
 size_t length(List *list);
 
+void delete_val(List *list,ElemType x);
+
+void sort(List *list);
+
+void reverse(List *list);
+
+void clear(List *list);
+
+void destory(List *list);
+
 
 
 

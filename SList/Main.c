@@ -66,14 +66,21 @@ int main()
 				printf("The length of Single List is %ld.\n",length(&mylist));
 				break;
 			case 9:
+				printf("Please set the number that you want to delete.\n");
+				scanf("%d",&Item);
+				delete_val(&mylist,Item);
 				break;
 			case 10:
+				sort(&mylist);
 				break;
 			case 11:
+				reverse(&mylist);
 				break;
 			case 12:
+				clear(&mylist);
 				break;
 			case 13:
+				destory(&mylist);
 				break;
 			case 14:
 				break;
