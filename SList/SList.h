@@ -23,8 +23,21 @@ typedef struct List
 
 void InitList(List *list);
 
+void push_back(List *list,ElemType x);
 
+void show_list(List *list);
 
+void push_front(List *list,ElemType x);
+
+void pop_back(List *list);
+
+void pop_front(List *list);
+
+void insert_val(List *list ,ElemType x);
+
+PNode find(List *list,ElemType x);
+
+size_t length(List *list);
 
 
 

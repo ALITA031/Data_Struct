@@ -5,6 +5,7 @@ int main()
 	InitList(&mylist);
 	
 	int select =1;
+	int Item=0;
 	while(select)
 	{
 		printf("************************************\n");
@@ -23,21 +24,23 @@ int main()
 		switch(select)
 		{
 			case 1:
-				printf("Please set the number(-1 end):>\n");
+				printf("Please set the num that you want to push_back.(-1 end):>\n");
 				while(scanf("%d",&Item),Item!=-1)
-				{		
-				push_back(&mylist,Item);
+				{
+					push_back(&mylist,Item);	
 				}
+
 				break;
 			case 2:
-				printf("Please set the number(-1 end):>\n");
+				printf("Please set the num that you want to push_back.(-1 end):>\n");
 				while(scanf("%d",&Item),Item!=-1)
-				{		
-				push_front(&mylist,Item);
+				{
+					push_front(&mylist,Item);	
 				}
+				
 				break;
 			case 3:
-				show_list(mylist);
+				show_list(&mylist);
 				break;
 			case 4:
 				pop_back(&mylist);
@@ -46,43 +49,33 @@ int main()
 				pop_front(&mylist);
 				break;
 			case 6:
-				printf("Please set num and pos\n");
-				scanf("%d %d",&Item,&pos);
-				insert_pos(&mylist,Item,pos);
+				printf("Please set the num that you want to insert :>\n");
+				scanf("%d",&Item);	
+				insert_val(&mylist,Item);
 				break;
 			case 7:
-				printf("Please set the num that you want to find\n");
+				printf("Please set the data that you want to find. :>\n");
 				scanf("%d",&Item);
-				pos=find(mylist,Item);
-				if(pos==-1)
-					printf("Error!\n");
+				PNode p=find(&mylist,Item);
+				if(p!=NULL)
+					printf("The data you want to find is there: %d\n",p->data);
 				else
-					printf("The pos is %d\n",pos);
+					printf("Here is no data you want to find.\n");	
 				break;
 			case 8:
-				printf("The length is %d\n",length(mylist));
+				printf("The length of Single List is %ld.\n",length(&mylist));
 				break;
 			case 9:
-				printf("Please set the number that you want to delete.\n");
-				scanf("%d",&pos);
-				delete_pos(&mylist,pos);
 				break;
 			case 10:
-				printf("Please set the val that you want to delete\n");
-				scanf("%d",&Item);
-				delete_val(&mylist,Item);
 				break;
 			case 11:
-				sort(&mylist);
 				break;
 			case 12:
-				reverse(&mylist);
 				break;
 			case 13:
-				clear(&mylist);
 				break;
 			case 14:
-				destory(&mylist);
 				break;
 			default:
 			printf("False,Please set number again\n");
