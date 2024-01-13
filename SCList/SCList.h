@@ -46,7 +46,7 @@ void clear(List *list);
 
 void destory(List *list);
 
-
+PNode buy_node(ElemType x);
 
 
 
