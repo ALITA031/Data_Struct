@@ -196,7 +196,44 @@ void str_clear(hstring* s)
 	s->length=0;
 }
 
+int str_find(hstring* s,hstring* t,int pos)
+{
+	int i=pos,j=0;
+	while(s->ch[i]!='\0'&&t->ch[j]!='\0')
+	{
+		if(s->ch[i]==t->ch[j])
+		{
+			i++;
+			j++;
+		}
+		else
+		{
+			i=i-j+1;
+			j=0;
+		}
+	}
 
+	if(t->ch[j]=='\0')
+		return i-j;
+	return -1;
+}
+
+void str_replace(hstring* s,hstring* t,hstring* v)
+{
+	int len_s=str_length(s);
+	int len_t=str_length(t);
+	int len_v=str_length(v);
+
+	int pos=str_find(s,t,0);
+	while(pos!=-1)
+	{
+		str_delete(s,pos,len_t);
+		str_insert(s,pos,v);
+		pos=str_find(s,t,pos+len_v);
+	}
+
+
+}
 
 
 

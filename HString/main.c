@@ -16,9 +16,9 @@ int main()
 	//###################################
 	printf("s:%d",str_empty(&s));
 	printf("\n");
-	hstring s1;
-	init_string(&s1);
-	printf("s1:%d",str_empty(&s1));
+	hstring st;
+	init_string(&st);
+	printf("st%d",str_empty(&st));
 	printf("\n");
 	//#################################
 	str_compare(&s,&t);
@@ -54,6 +54,32 @@ int main()
 	str_clear(&x3);
 	print_string(&x3);
 
+	//##################################
+	hstring s1,s2;
+	init_string(&s1);
+	init_string(&s2);
 
+	str_assign(&s1,"I love bxc");
+	str_assign(&s2,"bxc");
+	int pos=str_find(&s1,&s2,0);
+	printf("The pos of %s is %d\n",s2.ch,pos);
+	//####################################
+
+	hstring s3,s4,s5;
+	init_string(&s3);
+	init_string(&s4);
+	init_string(&s5);
+
+	str_assign(&s3,"I really love xxx");
+	str_assign(&s4,"xxx");
+	str_assign(&s5,"bxc");
+
+	str_replace(&s3,&s4,&s5);
+	print_string(&s3);
+
+
+
+
+	
 	return 0;
 }

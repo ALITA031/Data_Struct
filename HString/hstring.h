@@ -37,8 +37,9 @@ void str_delete(hstring* s,int pos,int len);
 
 void str_clear(hstring* s);
 
+int str_find(hstring* s,hstring* t,int pos);
 
-
+void str_replace(hstring* s,hstring* t,hstring* v);
 
 
 
