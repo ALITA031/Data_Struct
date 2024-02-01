@@ -37,4 +37,8 @@ void str_delete(sstring s,int pos,int len);
 void str_clear(sstring s);
 
 void print_string(sstring s);
+
+int str_find(sstring s,sstring t,int pos);
+
+void str_repalce(sstring s,sstring t,sstring v);
 #endif //__SSTRING_H__
