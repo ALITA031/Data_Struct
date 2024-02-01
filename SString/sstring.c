@@ -198,7 +198,7 @@ void str_replace(sstring s,sstring t,sstring v)
 	{
 		str_delete(s,pos,t_len);
 		str_insert(s,pos,v);
-		pos=str_find(s,t,pos+v_len+1);
+		pos=str_find(s,t,pos+v_len);
 	}
 }
 
