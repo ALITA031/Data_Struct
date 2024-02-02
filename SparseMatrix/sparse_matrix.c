@@ -270,24 +270,36 @@ void transpose_matrix(smatrix* sm,smatrix* t)
 	}
 }
 
+void fast_transpose_matrix(smatrix* sm,smatrix* t)
+{
+	t->col=sm->row;
+	t->row=sm->col;
+	t->nzero=sm->nzero;
 
+	int col=sm->col;
+	int num[col];
+	int cpos[col];
+	memset(num,0,sizeof(num));
+	memset(cpos,0,sizeof(cpos));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	for(int m=0;m<sm->nzero;m++)
+	{
+		num[sm->data[m].j]++;
+	}
+	for(int n=1;n<col;n++)
+	{
+		cpos[n]=cpos[n-1]+num[n-1];
+	}
+	
+	int pos=0;
+	memset(num,0,sizeof(num));
+	for(int q=0;q<sm->nzero;q++)
+	{
+		pos=cpos[sm->data[q].j]+num[sm->data[q].j];
+		t->data[pos].i=sm->data[q].j;
+		t->data[pos].j=sm->data[q].i;
+		t->data[pos].val=sm->data[q].val;
+		num[sm->data[q].j]++;
+	}
+}
 

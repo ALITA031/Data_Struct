@@ -39,7 +39,7 @@ void creat_matrix1(smatrix* sm);
 
 void transpose_matrix(smatrix* sm,smatrix* t);
 
-
+void fast_transpose_matrix(smatrix* sm,smatrix* t);
 
 
 

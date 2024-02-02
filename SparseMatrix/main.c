@@ -23,6 +23,9 @@ int main()
 	init_matrix(&t2);
 	transpose_matrix(&t1,&t2);
 	print_matrix(&t2);
+
+	fast_transpose_matrix(&t1,&t2);
+	print_matrix(&t2);
 	
 	return 0;
 }
