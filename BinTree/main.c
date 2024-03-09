@@ -1,5 +1,7 @@
 #include"BinTree.h" 
 #include"link_queue.h"
+#include"SeqStack.h"
+#include"SeqStack1.h"
 int main()
 {
 	BinTree bt;
@@ -43,5 +45,10 @@ int main()
 	clear(&(your_tree.root));
 	printf("!!!!!!!!\n");
 	level_order(&your_tree);
+	
+	pre_order_(bt.root);
+	in_order_(bt.root);
+	printf("######\n");
+	post_order_(bt.root);
 	return 0;
 }

@@ -1,5 +1,7 @@
 #include"BinTree.h"
 #include"link_queue.h"
+#include"SeqStack.h"
+#include"SeqStack1.h"
 
 void init_bintree(BinTree* bt,ElemType ref)
 {
@@ -54,6 +56,33 @@ void pre_order(BinTreeNode* t)
 		pre_order(t->right_child);
 	}
 }
+void pre_order_(BinTreeNode* t)
+{
+	if(t!=NULL)
+	{
+		seq_stack s;
+		init_stack(&s);
+		push(&s,t);
+		BinTreeNode* p;
+		while(!is_empty(&s))
+		{
+			get_top(&s,&p);
+			pop(&s);
+			printf("%c",p->data);
+
+			if(p->right_child!=NULL)
+			{
+				push(&s,p->right_child);
+			}
+			if(p->left_child!=NULL)
+			{
+				push(&s,p->left_child);
+			}
+		
+		}
+		printf("\n");
+	}
+}
 
 void in_order(BinTreeNode* t)
 {
@@ -68,6 +97,34 @@ void in_order(BinTreeNode* t)
 		in_order(t->right_child);
 	}
 }
+void in_order_(BinTreeNode* t)
+{
+	if(t!=NULL)
+	{
+		seq_stack s;
+		init_stack(&s);
+		push(&s,t);
+		BinTreeNode* p;
+		
+		while(!is_empty(&s))
+		{
+			while(t!=NULL&&t->left_child!=NULL)
+			{
+				push(&s,t->left_child);
+				t=t->left_child;
+			}
+			get_top(&s,&p);
+			pop(&s);
+			printf("%c",p->data);
+			if(p->right_child!=NULL)
+			{
+				t=p->right_child;
+				push(&s,t);
+			}
+		}
+	}
+}
+
 
 void post_order(BinTreeNode* t)
 {
@@ -82,6 +139,50 @@ void post_order(BinTreeNode* t)
 		printf("%c",t->data);
 	}
 }
+void post_order_(BinTreeNode* t)
+{
+	if(t!=NULL)
+	{
+		SeqStack s;
+		InitStack(&s);
+		stk_node* stk;
+		BinTreeNode* p;
+		do
+		{
+			while(t!=NULL)
+			{
+				stk->ptr=t;
+				stk->tag=L;
+				Push(&s,stk);
+				t=t->left_child;
+			}
+
+			int flag=1;
+			while(flag==1&&!IsEmpty(&s))
+			{
+				GetTop(&s,&stk);
+				Pop(&s);
+				p=stk->ptr;
+				switch(stk->tag)
+				{
+					case L:
+						stk->tag=R;
+						Push(&s,stk);
+						flag=0;
+						t=p->right_child;
+						break;
+					case R:
+						printf("%c",stk->ptr->data);
+						break;
+				}
+			}
+
+		}while(!IsEmpty(&s));
+
+		printf("\n");
+	}		
+}
+
 
 void level_order(BinTree* bt)
 {

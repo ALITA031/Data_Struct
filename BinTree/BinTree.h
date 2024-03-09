@@ -26,10 +26,13 @@ void create_bintree(BinTree* bt,BinTreeNode** t);
 //void create_bintree(BinTree* bt,BinTreeNode** t,ElemType* str);
 
 void pre_order(BinTreeNode* t);
+void pre_order_(BinTreeNode* t);
 
 void in_order(BinTreeNode* t);
+void in_order_(BinTreeNode* t);
 
 void post_order(BinTreeNode* t);
+void post_order_(BinTreeNode* t);
 
 void level_order(BinTree* bt);
 
